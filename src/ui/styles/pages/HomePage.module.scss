@@ -1,0 +1,36 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    header {
+        margin: 3rem 0;
+
+        text-align: center;
+
+        h1 {
+            margin-bottom: 1.5rem;
+        }
+
+        p {
+            span {
+                padding: 0.25rem 0.5rem;
+                
+                display: inline-block;
+
+                color: white;
+                background-color: black;
+            }
+        }
+    }
+
+    main {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+
+        > div {
+            padding: 1rem;
+        }
+    }
+}

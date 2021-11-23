@@ -1,0 +1,18 @@
+@font-face {
+  src: url("../../assets/fonts/Raleway.ttf");
+  font-family: Raleway;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+
+  font-family: Raleway, Arial, Helvetica, sans-serif;
+}
+
+html, body, #root, .container {
+  height: 100%;
+  width: 100%;
+
+  background-color: #f1f1f1;
+}
