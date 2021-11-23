@@ -1,25 +1,57 @@
-import Woods from "../../assets/images/woods.jpg";
+import { createRef, useEffect } from "react";
+
+import { MdDoubleArrow } from "react-icons/md";
 
 import styles from "../styles/components/Post.module.scss";
 
-function Post() {
+interface PostProps {
+    imgSrc: string;
+    imgPos: "top" | "center";
+    title: string;
+    describe: string;
+    date: string;
+    text: string;
+    commentsNumber: number;
+    commentsNumberForm: "square" | "circle";
+}
+
+function Post({ 
+    imgSrc, 
+    imgPos, 
+    title, 
+    describe, 
+    date, 
+    text, 
+    commentsNumber, 
+    commentsNumberForm
+}: PostProps) {
+    const imgRef = createRef<HTMLImageElement>();
+    const commentsNumberRef = createRef<HTMLSpanElement>();
+
+    useEffect(() => {
+        if (imgRef.current) {
+            imgRef.current.style.objectPosition = imgPos;
+        }
+
+        if (commentsNumberRef.current) {
+            commentsNumberRef.current.classList.add(styles[commentsNumberForm]);
+        }
+        // eslint-disable-next-line
+    }, []);
+
     return (
         <div className={styles.container}>
-            <img src={Woods} alt="" />
+            <img ref={imgRef} src={imgSrc} alt="" />
             <div>
-                <h2>TÍTULO DA NOTÍCIA</h2>
-                <p>Descrição da notícia, <span>Novembro 21, 2021</span></p>
-                <p>
-                    Mauris neque quam, fermentum ut nisl vitae, convallis maximus
-                    nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor
-                    magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies
-                    mi non congue ullam corper. Praesent tincidunt sed tellus ut rutrum.
-                    Sed vitae justo condimentum, porta lectus vitae, ultricies congue
-                    gravida diam non fringilla.
-                </p>
+                <h2>{title}</h2>
+                <p>{describe}<span>{date}</span></p>
+                <p>{text}</p>
                 <div>
-                    <button>LER MAIS</button>
-                    <p>Comments<span>0</span></p>
+                    <button>
+                        <span>LER MAIS</span>
+                        <MdDoubleArrow />
+                    </button>
+                    <p>Comments<span ref={commentsNumberRef}>{commentsNumber}</span></p>
                 </div>
             </div>
         </div>
